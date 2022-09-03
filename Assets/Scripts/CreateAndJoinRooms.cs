@@ -6,15 +6,11 @@ using TMPro;
 using Photon.Pun;
 
 
-public class CreateAndJoinRooms : MonoBehaviour
+public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField joinInput;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public InputField nameInput;
 
     public void CreateRoom()
     {
@@ -25,18 +21,15 @@ public class CreateAndJoinRooms : MonoBehaviour
         PhotonNetwork.JoinRoom(joinInput.text);
     }
 
-    public void OnJoinedRoom()
+    public override void OnJoinedRoom()
     {
         PhotonNetwork.LoadLevel("Game");
 
     }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
 
 
 }
