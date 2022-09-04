@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<NavMeshAgent>();
         view = GetComponent<PhotonView>();
 
+        
+
     }
 
     // Update is called once per frame
@@ -30,6 +33,11 @@ public class PlayerController : MonoBehaviour
     {
         CheckWorldPosition();
         AnimPlayer();
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("InitialMenu");
+        }
 
     }
 
