@@ -10,7 +10,6 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
 {
     public InputField createInput;
     public InputField joinInput;
-    public InputField nameInput;
 
     public void CreateRoom()
     {

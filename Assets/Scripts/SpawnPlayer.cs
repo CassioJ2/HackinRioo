@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class SpawnPlayer : MonoBehaviour
 {
-
+    [Header("Loading Player Info")]
     public DefinePlayer define;
 
+    [Header("Player Name")]
+    public TextMeshPro playerName;
+
+    [Header("Character Prefabs")]
     public GameObject playerPrefab;
     public GameObject jessPrefab;
     public GameObject rosePrefab;
 
-    public int typeOfPlayer;
-
+    [Header("Spawn points")]
     public float minX, maxX;
     public float uniqueY;
     public float minZ, maxZ;
@@ -24,9 +28,11 @@ public class SpawnPlayer : MonoBehaviour
     {
         define = GameObject.Find("DefinePlayer").GetComponent<DefinePlayer>();
 
-        if(define.playerType == 1)
+
+        if (define.playerType == 1)
         {
             playerPrefab = jessPrefab;
+
         } else if(define.playerType == 2)
         {
             playerPrefab = rosePrefab;
@@ -34,6 +40,9 @@ public class SpawnPlayer : MonoBehaviour
 
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), uniqueY, Random.Range(minZ, maxZ));
         PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        playerName = GameObject.Find("playerName").GetComponent<TextMeshPro>();
+        playerName.text = define.playerName;
+
 
     }
 

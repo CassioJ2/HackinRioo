@@ -9,14 +9,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera playerCam;
     public LayerMask layer;
 
-
     PhotonView view;
+
+    public Animator anim;
     
     public NavMeshAgent player;
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         playerCam = Camera.main;
         player = GetComponent<NavMeshAgent>();
         view = GetComponent<PhotonView>();
@@ -27,6 +29,21 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckWorldPosition();
+        AnimPlayer();
+
+    }
+
+    public void AnimPlayer()
+    {
+        if(player.hasPath) {
+            {
+                anim.SetBool("isMoving", true);
+            }
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+        }
     }
 
     private void CheckWorldPosition()
